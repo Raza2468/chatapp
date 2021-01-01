@@ -1,21 +1,26 @@
 var url="http://localhost:3001/";
 var socket = io(url)
-var tex = document.getElementById("tex")
-var list = document.getElementById("list")
-var text = document.getElementById("text")
-// var arr=[]
+var usertext= document.getElementById("usertext")
 
 let send=()=>{
-    const message=tex.value
+    const message=usertext.value
     socket.emit('send-message',message)
     var li = document.createElement("li")
     var litext= document.createTextNode(message)
     list.appendChild(li)
     li.appendChild(litext)  
     console.log(message);
-// var a= arr.push("1",message)
-// console.log(a);
-}
+   }
+//    const Http = new XMLHttpRequest();
+//    Http.open("POST", "http://localhost:3001/");
+//    Http.setRequestHeader("Content-Type", "application/json");
+//    Http.send(JSON.stringify(arr));
+//    Http.onreadystatechange = (e) => {
+//        let data = JSON.parse((Http.responseText));
+//     console.log(data);
+   
+//            }
+
 
 socket.on('chat-connect',(user)=> {
     var li = document.createElement("li")
@@ -23,8 +28,6 @@ socket.on('chat-connect',(user)=> {
     list.appendChild(li)
     li.appendChild(litext)
     console.log(user);
-//     var a= arr.push("2",user)
-// console.log(a);  
 });
 socket.on('disconnect',()=> {
     console.log("disconnect")

@@ -17,6 +17,7 @@ var PORT = process.env.PORT || 3001
 
 app.get('/',(res,req,next)=>{
     req.send("<h1>Server</h1>")
+
 })
 
 app.use("/", express.static(path.resolve(path.join(__dirname,'public'))))
@@ -35,16 +36,10 @@ user.on('send-message',(message)=>{
     console.log("message",message);
     user.broadcast.emit("chat-connect",message)
 
-      })
+})
 
 user.on('disconnect', () => { console.log("disconnect id",user.id);});
 });
-
-
-// server.use(bodyParser.urlencoded({ extended: false }))
-
-// server.pf
-
 
 server.listen(PORT,()=>{
 console.log("Server",PORT);
