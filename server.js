@@ -31,10 +31,14 @@ const io = socketIO(server);
 io.on('connection', user => {
         
 console.log("connection id",user.id);
+// user.broadcast.emit("user-id",user)
 
 user.on('send-message',(message)=>{
     console.log("message",message);
     user.broadcast.emit("chat-connect",message)
+
+
+
 
 })
 

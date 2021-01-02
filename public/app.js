@@ -2,11 +2,25 @@ var url="http://localhost:3001/";
 var socket = io(url)
 var usertext= document.getElementById("usertext")
 
+function useridbtn() {
+    var userJOIN= document.getElementById("userJOIN").value
+let msgi={
+    name:userJOIN,
+// useri= userJOIN,
+// message=msg
+}
+// appendMessage(msgi,'outgoing')
+console.log(msgi);
+}
+// const username=username.value
+
 let send=()=>{
+    var userJOIN= document.getElementById("userJOIN").value
     const message=usertext.value
     socket.emit('send-message',message)
+    // socket.emit('user-id',user)
     var li = document.createElement("li")
-    var litext= document.createTextNode(message)
+    var litext= document.createTextNode(`${message},${"msg"}`)
     list.appendChild(li)
     li.appendChild(litext)  
     console.log(message);
@@ -24,7 +38,9 @@ let send=()=>{
 
 socket.on('chat-connect',(user)=> {
     var li = document.createElement("li")
-    var litext= document.createTextNode(user)
+    var litext= document.createTextNode(`${user},${"Raza"}`)
+    li.setAttribute("class", "democlass");
+
     list.appendChild(li)
     li.appendChild(litext)
     console.log(user);
